@@ -25,7 +25,7 @@ source(here("code", "alternative_methods", "stackedrpql.R"))
 ##------------------
 #' # Simulate data -- inspired by [http://dx.doi.org/10.1016/j.csda.2017.09.004]
 ##------------------
-set.seed(032023)
+set.seed(072023)
 num_clus <- 200
 num_resp <- 6
 response_type <- "binomial"
