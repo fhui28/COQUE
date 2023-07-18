@@ -13,7 +13,7 @@
 #' @param response_type The distribution of the responses for the model. Currently, it is assumed all responses follow the same distribution, which can be one of "gaussian", "poisson", "binomial", "ordinal", "tweedie".
 #' @param num_cores The number of cores to use for parallelization of the stacked GLMM fitting. Defaults to the \code{doParallel::detectCores()-2}.
 #' @param switch.NR Should the algorithm swith to a Newton-Raphson update step, when reasonable? Default is \code{FALSE} as per [glmmLasso::glmmLasso()].
-#' @param tweedie_var_power If Tweedie distributed responses are assumed, then this argument must be supplied to inform a fixed power parameter. 
+#' @param tweedie_var_power If Tweedie distributed responses are assumed, then this argument must be supplied to inform a fixed power parameter for each response. 
 #' @param steps The maximum number of iterations. Please see the \code{steps} argument in [glmmLasso::glmmLassoControl()] for more details.
 #' 
 #' @return A list with the following:
