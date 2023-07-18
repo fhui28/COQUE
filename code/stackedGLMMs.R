@@ -9,7 +9,7 @@
 #' @param response_type The distribution of the responses for the model. Currently, it is assumed all responses follow the same distribution, which can be one of "gaussian", "poisson", "binomial", "ordinal", "tweedie".
 #' @param formula_X One-sided formula for the fixed effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{fixed_effects} argument.
 #' @param formula_Z One-sided formula for the random effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{Sigma} argument.
-#' @param data A data frame from which containing relevant fixed and random effect covariate information, and, importantly, **must** also contain a column called "id" which indexes the cluster of each row in the data fame.
+#' @param data A data frame from which containing relevant fixed and random effect covariate information, and, importantly, **must** also contain a column called "id" which indexes the cluster of each row in the data frame.
 #' @param trial_size A vector of response-specific trial sizes, which is needed for binomial distributed responses.
 #' @param start_params Starting values can be supplied. This must take the form of a list with length equal to the number of columns in \code{y}. Each element in the list should then contain: \code{fixed_effects}, which is a vector starting values for the fixed effect coefficients; \code{random_effects}, which is a matrix of starting values for the random effect coefficients where the number of columns is equal to the number of columns of by the model matrix implied by \code{formula_Z}; \code{sd}, which is a vector of standard deviation parameters for the random effects covariance matrix; \code{unconstrained_cor_params}, which is a vector of parameters corresponding to the lower-triangular elements of the Cholesky decomposition of the random effects correlation matrix. We refer the reader to [https://kaskr.github.io/adcomp/_book/Densities.html] to see how covariance matrices are parametrized in TMB.
 #' @param TMB_directory The directory where the TMB C++ files are located.
@@ -19,7 +19,7 @@
 #'
 #'
 #' @return A object for class "stackedGLMM" which contains the following:
-#' \item{respxxx:}{The first \code{ncol(y)} elements contains the estimated stacked GLMMs corresponding to each response. Each element is itself a list containing: the fitted model output from TMB (\code{fit} and \code{sdreport}), a list of estimated parameters and random effects in a slightly tidier format (\code{point_estimates}), and a matrix of score vector values for each cluster (\code{socre_vectors}).}
+#' \item{respxxx:}{The first \code{ncol(y)} elements contains the estimated stacked GLMMs corresponding to each response. Each element is itself a list containing: the fitted model output from TMB (\code{fit} and \code{sdreport}), a list of estimated parameters and random effects in a slightly tidier format (\code{point_estimates}), and a matrix of score vector values for each cluster (\code{score_vectors}).}
 #' \item{call:}{The function call.}
 #' \item{formula_X/formula_Z/data/response_type/num_resp:}{Arugment information that can be safely ignored.}
 #' 

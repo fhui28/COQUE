@@ -16,7 +16,7 @@ This repository code contain template code associated with the manuscript "Simul
 
 There are currently three directories in this repository:
 
--   `code`, which contains `R` scripts implementing the proposed COQUE (composite quadratic estimator) method along with other scripts for simulating multivariate longitudinal data and fitting stacked penalized univariate mixed models using [rpql](https://cran.r-project.org/web/packages/rpql/index.html) and [glmmPen](https://cran.r-project.org/web/packages/glmmPen/index.html). Many of the functions in these scripts contain pseudo-help files;
+-   `code`, which contains `R` scripts implementing the proposed COQUE (composite quadratic estimator) method along with other scripts for simulating multivariate longitudinal data, and fitting stacked (potentially penalized) univariate mixed models using [rpql](https://cran.r-project.org/web/packages/rpql/index.html) and [glmmPen](https://cran.r-project.org/web/packages/glmmPen/index.html) among others. The latter are found in the subfolder `alternative_methods`. Many of the functions in these scripts contain pseudo-help files;
 
 -   `simulations`, which contains template scripts to implement the simulation study in the manuscript. **Users are recommended to start here by examining one of `setting1_xxx_n200.R` scripts to understand how to apply COQUE, among other methods.**
 
