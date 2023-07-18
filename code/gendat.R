@@ -3,8 +3,8 @@
 #' @description 
 #' `r lifecycle::badge("experimental")`
 #'
-#' @param formula_X Formula for the fixed effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{fixed_effects} argument.
-#' @param formula_Z Formula for the random effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{Sigma} argument.
+#' @param formula_X One-sided formula for the fixed effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{fixed_effects} argument.
+#' @param formula_Z One-sided formula for the random effects component of the model. All responses are assumed to be effected by the same formula; sparsity and clustering is instead controlled by the \code{Sigma} argument.
 #' @param data A data frame from which containing relevant fixed and random effect covariate information, and, importantly, **must** also contain a column called "id" which indexes the cluster of each row in the data fame.
 #' @param fixed_effects A matrix of fixed effect coefficients, where the number of rows is equal to the number of responses and the number columns must be equal to the number of columns of the model matrix implied by \code{formula_X}.
 #' @param Sigma A random effects covariance matrix, where the number of rows and columns both must equal to the number of responses multiplied by the number of columns of the model matrix implied by \code{formula_Z}.
