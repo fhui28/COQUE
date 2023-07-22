@@ -28,7 +28,7 @@ source(here("code","utils.R"))
 ##------------------
 set.seed(072023)
 num_resp <- 6
-response_type <- "poisson"
+response_type <- "tweedie"
 p <- 15
 H <- abs(outer(1:p, 1:p, "-"))
 num_clus <- 100
@@ -54,7 +54,7 @@ true_distinct_values_nointercept_n100 <- apply(true_fixed_effects_n100[,-1], 2, 
 
 set.seed(072023)
 num_resp <- 6
-response_type <- "poisson"
+response_type <- "tweedie"
 p <- 15
 H <- abs(outer(1:p, 1:p, "-"))
 num_clus <- 200

@@ -16,10 +16,10 @@ source(here("code","gendat.R"))
 source(here("code","utils.R"))
 
 #' Code for alternative methods
-source(here("code","alternative_methods","stackedglmmLasso.R"))
+#source(here("code","alternative_methods","stackedglmmLasso.R"))
 source(here("code", "alternative_methods", "backwardelim_BIC.R"))
-source(here("code", "alternative_methods", "stackedglmmPen.R"))
-source(here("code", "alternative_methods", "stackedrpql.R"))
+#source(here("code", "alternative_methods", "stackedglmmPen.R"))
+#source(here("code", "alternative_methods", "stackedrpql.R"))
 
 
 ##------------------
