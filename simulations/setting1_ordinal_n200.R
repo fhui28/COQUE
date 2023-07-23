@@ -101,6 +101,7 @@ dosims <- function(NAI) {
   
     ##------------------
     #' # Stacked penalized GLMMs using the [glmmLasso::glmmLasso()] package.
+    #' **Note for N = 200, we found this approach to be computationally excessively intensive, taking over 20 hrs on the HPC with the session Information provided below. Therefore, we did not produce results for this method for the N = 200 ordinal response case**
     ##------------------
     tic <- proc.time()
     glmmlasso_fit <- try(stacked_glmmLasso(fix = resp ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 + x11 + x12 + x13 + x14 + x15,
