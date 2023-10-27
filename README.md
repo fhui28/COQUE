@@ -4,7 +4,7 @@
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-[![DOI](https://zenodo.org/badge/667732583.svg)](https://zenodo.org/badge/latestdoi/667732583)
+[![DOI](https://zenodo.org/badge/667732583.svg)](https://zenodo.org/doi/10.5281/zenodo.8174027)
 
 <!-- badges: end -->
 
