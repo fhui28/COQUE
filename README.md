@@ -14,7 +14,7 @@ This repository code contain template code associated with the manuscript "Simul
 
 # Getting started
 
-There are currently three directories in this repository:
+Currently, there are three directories in this repository:
 
 -   `code`, which contains `R` scripts implementing the proposed COQUE (composite quadratic estimator) method along with other scripts for simulating multivariate longitudinal data, and fitting stacked (potentially penalized) univariate mixed models using [rpql](https://cran.r-project.org/web/packages/rpql/index.html) and [glmmPen](https://cran.r-project.org/web/packages/glmmPen/index.html) among others. The latter are found in the subfolder `alternative_methods`. Many of the functions in these scripts contain pseudo-help files;
 
@@ -25,7 +25,7 @@ There are currently three directories in this repository:
 If you find something that looks like a bug/issue, please use Github issues and post it up there. As much as possible, please include in the issue:
 
 1.  A description of the bug/issue;
-2.  Paste-able code along with some comments that reproduces the problem e.g., using the [reprex](https://cran.r-project.org/web/packages/reprex/index.html) package. If you also have an idea of how to fix the problem (Francis tends to make a lot of mistakes in my code, so some may be easy amendments!), then that is also much appreciated.
+2.  Paste-able code along with some comments that reproduces the problem e.g., using the [reprex](https://cran.r-project.org/web/packages/reprex/index.html) package. If you also have an idea of how to fix the problem, then that is also much appreciated.
 3.  Required data files etc...
 
 Alternatively, please contact the corresponding author at [francis.hui\@anu.edu.au](mailto:francis.hui@anu.edu.au)
