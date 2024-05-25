@@ -1,0 +1,28 @@
+Package: COQUE
+Title: Simultaneous coefficient clustering and sparsity for multivariate mixed models
+Version: 0.1
+Date: 2024-07-01
+Authors@R: c(person(given = "Francis K.C.",
+                    family = "Hui", 
+                    role = c("aut", "cre"), 
+                    email = "fhui28@gmail.com"))
+Maintainer: Francis Hui <fhui28@gmail.com>
+Description: COQUE is an computationally scalable (at least at the time of development!) approach to performing joint clustering and variable selection of fixed effect coefficients in multivariate longitudinal/independent cluster mixed models. The method works by first fitting separate/stacked univariate longitudinal mixed models to each of the responses (in parallel). The model estimates into a quadratic form resembling that of a composite likelihood multivariate Wald statistic. We then augment the composite quadratic form with broken adaptive ridge regression penalties to encourage sparsity and clustering of the fixed effect coefficients. 
+License: GPL (>= 2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+NeedsCompilation: no
+URL: https://github.com/fhui28/COQUE
+BugReports: https://github.com/fhui28/COQUE/issues
+RoxygenNote: 7.3.1
+Imports: 
+    doParallel,
+    foreach,
+    lifecycle,
+    Matrix,
+    mvtnorm,
+    parallel,
+    quadprog,
+    stats,
+    tweedie
+Depends: R (>= 3.5.0), TMB

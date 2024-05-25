@@ -15,13 +15,6 @@ library(ROCR)
 here::i_am("simulations/setting1_poisson_analyzeresults.R")
 library(here)
 
-#' Code for BARF and composite quadratic estimator
-source(here("code", "coque.R"))
-source(here("code","estimates.R"))
-source(here("code","stackedGLMMs.R"))
-source(here("code","gendat.R"))
-source(here("code","utils.R"))
-
 
 ##------------------
 #' # Simulate data -- inspired by [http://dx.doi.org/10.1016/j.csda.2017.09.004]
@@ -48,7 +41,7 @@ true_fixed_effects_n100 <- cbind(
     replicate(4, sample(c(-0.125,0),size=num_resp,replace=TRUE)), # 3 covariates where in each covariate there are at most 2 unique values, including zero
     replicate(5, numeric(num_resp)))
 
-true_distinct_values_nointercept_n100 <- apply(true_fixed_effects_n100[,-1], 2, function(x) length(unique(x))) 
+true_distinct_values_nointercept_n100 <- apply(true_fixed_effects_n100[,-1], 2, function(x) length(unique(x)))
 
 
 
@@ -74,7 +67,7 @@ true_fixed_effects_n200 <- cbind(
     replicate(4, sample(c(-0.125,0),size=num_resp,replace=TRUE)), # 3 covariates where in each covariate there are at most 2 unique values, including zero
     replicate(5, numeric(num_resp)))
 
-true_distinct_values_nointercept_n200 <- apply(true_fixed_effects_n200[,-1], 2, function(x) length(unique(x))) 
+true_distinct_values_nointercept_n200 <- apply(true_fixed_effects_n200[,-1], 2, function(x) length(unique(x)))
 
 
 true_fixed_effects <- abind::abind(true_fixed_effects_n100, true_fixed_effects_n200, along = 3)
@@ -106,9 +99,9 @@ rm(true_G, true_Sigma, true_ranef_cov, num_clus)
 N_seq <- c(100,200)
 num_datasets <- 500
 methods <- c("glmmLasso", "backward_elimination", "glmmPen", "rpql", "COQUE")
-all_time_taken <- all_RMSE <- all_MSE_uniquevalues <- all_sensitivity <- 
-    all_specificity <- all_accuracy <- all_F1 <- array(NA, 
-                                                       dim = c(2, num_datasets, length(methods)), 
+all_time_taken <- all_RMSE <- all_MSE_uniquevalues <- all_sensitivity <-
+    all_specificity <- all_accuracy <- all_F1 <- array(NA,
+                                                       dim = c(2, num_datasets, length(methods)),
                                                        dimnames = list(N = N_seq, datasets = 1:num_datasets, methods = methods))
 
 
@@ -119,8 +112,8 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
         load(filename)
     if(!file.exists(filename))
         next;
-    
-    
+
+
     #' Pass over any erroneous fits (testing suggesting this was very little e.g., 2-4 in 500 datasets)
     if(inherits(try(sapply(glmmlasso_fit[1:num_resp], function(x) x$final_fixed_effects), silent = TRUE), "try-error"))
         next;
@@ -132,8 +125,8 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
         next;
     if(inherits(penalized_fit, "try-error"))
         next;
-    
-    
+
+
     #' Computation time
     all_time_taken[k1,k0,] <- c(
         glmmlasso_fit$time_taken_full[3],
@@ -142,12 +135,12 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
         rpql_fit$time_taken_full[3],
         penalized_fit$time_taken_full[3]
         )
-    
-    
+
+
     #' Metrics for each of the estimators
     cw_coefficients <- t(sapply(glmmlasso_fit[1:num_resp], function(x) x$final_fixed_effects))
     makepred_obj <- ROCR::prediction(predictions = as.vector(1*(cw_coefficients != 0)), labels = as.vector(1*(true_fixed_effects[,,k1] != 0)))
-    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x))) 
+    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x)))
     all_sensitivity[k1,k0,1] <- ROCR::performance(makepred_obj, measure = "sens")@y.values[[1]][2]
     all_specificity[k1,k0,1] <- ROCR::performance(makepred_obj, measure = "spec")@y.values[[1]][2]
     all_accuracy[k1,k0,1] <- ROCR::performance(makepred_obj, measure = "acc")@y.values[[1]][2]
@@ -157,7 +150,7 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
 
     cw_coefficients <- t(sapply(glmm_backwardelim[1:num_resp], function(x) x$coefficients))
     makepred_obj <- ROCR::prediction(predictions = as.vector(1*(cw_coefficients != 0)), labels = as.vector(1*(true_fixed_effects[,,k1] != 0)))
-    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x))) 
+    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x)))
     all_sensitivity[k1,k0,2] <- ROCR::performance(makepred_obj, measure = "sens")@y.values[[1]][2]
     all_specificity[k1,k0,2] <- ROCR::performance(makepred_obj, measure = "spec")@y.values[[1]][2]
     all_accuracy[k1,k0,2] <- ROCR::performance(makepred_obj, measure = "acc")@y.values[[1]][2]
@@ -167,7 +160,7 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
 
     cw_coefficients <- do.call(rbind, glmmPen_fit[1:num_resp])
     makepred_obj <- ROCR::prediction(predictions = as.vector(1*(cw_coefficients != 0)), labels = as.vector(1*(true_fixed_effects[,,k1] != 0)))
-    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x))) 
+    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x)))
     all_sensitivity[k1,k0,3] <- ROCR::performance(makepred_obj, measure = "sens")@y.values[[1]][2]
     all_specificity[k1,k0,3] <- ROCR::performance(makepred_obj, measure = "spec")@y.values[[1]][2]
     all_accuracy[k1,k0,3] <- ROCR::performance(makepred_obj, measure = "acc")@y.values[[1]][2]
@@ -177,7 +170,7 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
 
     cw_coefficients <- t(sapply(rpql_fit[1:num_resp], function(x) x$fixef))
     makepred_obj <- ROCR::prediction(predictions = as.vector(1*(cw_coefficients != 0)), labels = as.vector(1*(true_fixed_effects[,,k1] != 0)))
-    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x))) 
+    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x)))
     all_sensitivity[k1,k0,4] <- ROCR::performance(makepred_obj, measure = "sens")@y.values[[1]][2]
     all_specificity[k1,k0,4] <- ROCR::performance(makepred_obj, measure = "spec")@y.values[[1]][2]
     all_accuracy[k1,k0,4] <- ROCR::performance(makepred_obj, measure = "acc")@y.values[[1]][2]
@@ -188,7 +181,7 @@ for(k1 in 1:2) { for(k0 in 1:num_datasets) {
 
     cw_coefficients <- estimates(penalized_fit, lambda = "BIC", hybrid = TRUE)$hybrid
     makepred_obj <- ROCR::prediction(predictions = as.vector(1*(cw_coefficients != 0)), labels = as.vector(1*(true_fixed_effects[,,k1] != 0)))
-    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x))) 
+    cw_uniquevalues_nointercept <- apply(cw_coefficients[,-1], 2, function(x) length(unique(x)))
     all_sensitivity[k1,k0,5] <- ROCR::performance(makepred_obj, measure = "sens")@y.values[[1]][2]
     all_specificity[k1,k0,5] <- ROCR::performance(makepred_obj, measure = "spec")@y.values[[1]][2]
     all_accuracy[k1,k0,5] <- ROCR::performance(makepred_obj, measure = "acc")@y.values[[1]][2]
