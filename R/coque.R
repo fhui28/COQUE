@@ -57,6 +57,7 @@
 #' ##------------------
 #' ## Basic set up and true parameters
 #' set.seed(052024)
+#' library(mvtnorm)
 #' num_clus <- 200
 #' num_resp <- 6
 #' response_type <- "binomial"
@@ -140,6 +141,7 @@
 #' ##------------------
 #' ## Basic set up and true parameters
 #' set.seed(052024)
+#' library(mvtnorm)
 #' num_clus <- 100
 #' num_resp <- 6
 #' response_type <- "poisson"
@@ -220,6 +222,7 @@
 #' ##------------------
 #' ## Basic set up and true parameters
 #' set.seed(052024)
+#' library(mvtnorm)
 #' num_clus <- 200
 #' num_resp <- 6
 #' response_type <- "tweedie"
@@ -304,6 +307,7 @@
 #' ##------------------
 #' ## Basic set up and true parameters
 #' set.seed(052024)
+#' library(mvtnorm)
 #' num_clus <- 200
 #' num_resp <- 6
 #' response_type <- "ordinal"
