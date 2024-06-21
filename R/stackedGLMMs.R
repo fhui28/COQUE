@@ -13,20 +13,20 @@
 #' @param trial_size A vector of response-specific trial sizes, which is needed for binomial distributed responses.
 #' @param start_params Starting values can be supplied. This must take the form of a list with length equal to the number of responses i.e., the number of columns in \code{y}. Each element in the list should then contain:
 #' \itemize{
-#' \item{fixed_effects}{a vector of starting values for the fixed effect coefficients.}
-#' \item{random_effects}{a matrix of starting values for the random effect coefficients where the number of columns is equal to the number of columns of the model matrix implied by \code{formula_Z}.}
-#' \item{sd}{a vector of standard deviation parameters for the random effects covariance matrix.}
-#' \item{unconstrained_cor_params}{a vector of parameters corresponding to the lower-triangular elements of the Cholesky decomposition of the random effects correlation matrix. We refer the reader to \url{https://kaskr.github.io/adcomp/_book/Densities.html} to see how covariance matrices are parametrized in \code{TMB}.}
+#' \item{fixed_effects: }{a vector of starting values for the fixed effect coefficients.}
+#' \item{random_effects: }{a matrix of starting values for the random effect coefficients where the number of columns is equal to the number of columns of the model matrix implied by \code{formula_Z}.}
+#' \item{sd: }{a vector of standard deviation parameters for the random effects covariance matrix.}
+#' \item{unconstrained_cor_params: }{a vector of parameters corresponding to the lower-triangular elements of the Cholesky decomposition of the random effects correlation matrix. We refer the reader to \url{https://kaskr.github.io/adcomp/_book/Densities.html} to see how covariance matrices are parametrized in \code{TMB}.}
 #' }
 #' @param TMB_directories A list with two elements, identifying the directory where TMB C++ file exists (\code{cpp}), and the directory where the corresponding compiled files to be placed (\code{compile}). *Unless you really want to do some real mucking around, these should be left at their default i.e., the directory where the packages were installed locally. Please note a version of the C++ file will be copied to the \code{compile} directory.*
 #' @param num_cores The number of cores to use for parallelization of the stacked GLMM fitting. Defaults to the \code{parallel::detectCores()-2}.
 #' @param score_vectors Should vectors of the score values for each cluster within each responses be returned. Defaults to \code{TRUE} and this generally should *not* be turned off.
 #' @param control A list controlling the some of the tuning parameters in the optimization process for fitting the stacked GLMMs, noting [stats::nlminb()] is used to perform the optimization. These include:
 #' \itemize{
-#' \item{iter.max}{the maximum number of iterations allowed.}
-#' \item{eval.max}{the maximum number of evaluations of the objective function allowed.}
-#' \item{trace}{this can be set to a positive value so that the value of the objective function and the parameters is printed every \code{trace}'th iteration.}
-#' \item{attempts}{the number of attempts are made to fit each stacked univariate GLMM (if [stats::nlminb()] fails on the first try).}
+#' \item{iter.max: }{the maximum number of iterations allowed.}
+#' \item{eval.max: }{the maximum number of evaluations of the objective function allowed.}
+#' \item{trace: }{this can be set to a positive value so that the value of the objective function and the parameters is printed every \code{trace}'th iteration.}
+#' \item{attempts: }{the number of attempts are made to fit each stacked univariate GLMM (if [stats::nlminb()] fails on the first try).}
 #' }
 #'
 #'
@@ -35,9 +35,9 @@
 #'
 #'
 #' @return A object for class "stackedGLMM" which contains the following:
-#' \item{respxxx:}{The first \code{ncol(y)} elements contains the estimated stacked GLMMs corresponding to each response. Each element is itself a list containing: the fitted model output from TMB (\code{fit} and \code{sdreport}), a list of estimated parameters and random effects in a slightly tidier format (\code{point_estimates}), and a matrix of score vector values for each cluster (\code{score_vectors}).}
-#' \item{call:}{The function call.}
-#' \item{formula_X/formula_Z/data/response_type/num_resp:}{Arugment information that can be safely ignored.}
+#' \item{respxxx: }{The first \code{ncol(y)} elements contains the estimated stacked GLMMs corresponding to each response. Each element is itself a list containing: the fitted model output from TMB (\code{fit} and \code{sdreport}), a list of estimated parameters and random effects in a slightly tidier format (\code{point_estimates}), and a matrix of score vector values for each cluster (\code{score_vectors}).}
+#' \item{call: }{The function call.}
+#' \item{formula_X/formula_Z/data/response_type/num_resp: }{Arugment information that can be safely ignored.}
 #'
 #'
 #' @author Francis K.C. Hui <francis.hui@anu.edu.au>

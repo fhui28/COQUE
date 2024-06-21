@@ -3,7 +3,7 @@
 #' @description
 #' `r lifecycle::badge("experimental")`
 #'
-#' The COQUE objective function being optimized is \code{-0.5 * t(psi - psihat) %^% G %*% (psi - psihat) - lambda * penalty}, where \code{psihat} are the composite likelihood estimates produced from the stacked univariate GLMM (see the [stackedGLMMs()] function), \code{G} is the sandwich or Godambe information matrix, and \code{penalty} is are a set of broken adaptive ridge (fusion) penalties to achieve simultaneous variable selection and coefficient clustering on the fixed effect coefficients. Construction of the regularization path for COQUE is done via parallel computing.
+#' The COQUE objective function being optimized is \code{-0.5 * t(psi - psihat) %^% G %*% (psi - psihat) - lambda * penalty}, where \code{psihat} are the composite likelihood estimates produced from the stacked univariate GLMM (see the [stackedGLMMs()] function), \code{G} is the sandwich or Godambe information matrix, and \code{penalty} is a set of broken adaptive ridge (fusion) penalties to achieve simultaneous variable selection and coefficient clustering on the fixed effect coefficients. Construction of the regularization path for COQUE is done via parallel computing.
 #'
 #' **No penalization of the random effects is performed.**
 #'
@@ -16,10 +16,10 @@
 #' @param num_cores The regularization path is constructed via parallel computing, and this argument controls the number of cores used. Defaults to \code{NULL}, in which case it is set to \code{parallel::detectCores() - 2}.
 #' @param control A list containing the following elements:
 #' \itemize{
-#' \item{maxit}{the maximum number of iterations in the algorithm.}
-#' \item{eps}{the convergence criterion; the norm of the difference between estimates from successive iterations must be smaller than this value.}
-#' \item{round_eps}{a tolerance to round values to zero; this is technically not needed as COQUE and the broken adaptive ridge penalty will produce exactly zero estimates up to machine error, but is included anyway.}
-#' \item{fallback_to_bread}{whether to use replace the sandwich information matrix with the observed information (i.e., the bread) matrix if instabilities are detected in the former.}
+#' \item{maxit: }{the maximum number of iterations in the algorithm.}
+#' \item{eps: }{the convergence criterion; the norm of the difference between estimates from successive iterations must be smaller than this value.}
+#' \item{round_eps: }{a tolerance to round values to zero; this is technically not needed as COQUE and the broken adaptive ridge penalty will produce exactly zero estimates up to machine error, but is included anyway.}
+#' \item{fallback_to_bread: }{whether to use replace the sandwich information matrix with the observed information (i.e., the bread) matrix if instabilities are detected in the former.}
 #' }
 #'
 #'
@@ -32,7 +32,7 @@
 #' \item{lambda:}{The actual sequence of tuning parameter, lambda, values used.}
 #' \item{psi_path:}{A sparse matrix showing the estimated parameters at each point on the regularization path. The number of rows is equal \code{length(psihat)}, while the number of columns is equal to \code{length(lambda)}. The parameters are ordered so that all the fixed effect coefficients appear first (running as covariates within response), followed by any nuisance parameters and random effects variance parameters.}
 #' \item{coque_statistics_path:}{A vector showing the value of the composite quadratic approximation statistic at each point on the regularization path.}
-#' \item{df_path:}{A vector showing the number of non-zero estimated values in the (reparametrized) \code{psihat} at each point on the regularization path. This is used for calculating information criterion. Note \code{df_path} counts all parameters, not just those up for selection. This is consistent with the fact that the composite quadratic estimator is constructed with respect to all the parameters in the composite likelihood. }
+#' \item{df_path:}{A vector showing the number of non-zero estimated values in the (reparametrized) \code{psihat} at each point on the regularization path. This is used for calculating information criteria. Note \code{df_path} counts all parameters, not just those up for selection. This is consistent with the fact that the composite quadratic estimator is constructed with respect to all the parameters in the composite likelihood. }
 #' \item{ICs:}{A matrix of some information criteria and their values on the regularization path. The number of rows is equal to \code{length(lambda)}. The current information criteria calculated include:
 #' Akaike information criterion (AIC) with model complexity penalty of 2;
 #' Bayesian information criterion (BIC) with model complexity penalty of \code{log(num_clus)} where \code{num_clus} is the numbers of clusters in the multivariate GLMM;
@@ -46,7 +46,7 @@
 #' @author Francis K.C. Hui <fhui28@gmail.com>
 #'
 #'
-#' @seealso [estimates.coque()] for extracting values from a COQUE fit, [stackedGLMMs()] for fitting stacked univariate generalized linear mixed models (not this function has to be run upstream of running the main \code{coque} function), and [generatedata_mglmm()] for simulating data from a longitudinal/independent cluster multivariate generalized linear mixed model.
+#' @seealso [estimates.coque()] for extracting values from a COQUE fit, [stackedGLMMs()] for fitting stacked univariate generalized linear mixed models (note this function has to be run upstream of running the main \code{coque} function), and [generatedata_mglmm()] for simulating data from a longitudinal/independent cluster multivariate generalized linear mixed model.
 #'
 #'
 #' @examples
@@ -131,6 +131,7 @@
 #'
 #' parameter_estimates <- estimates(penalized_fit, lambda = "BIC", hybrid = TRUE)
 #'
+#' true_fixed_effects
 #' parameter_estimates$hybrid # Compare with true_fixed_effects
 #' parameter_estimates$random_effects_covariance
 #'
@@ -212,6 +213,7 @@
 #'
 #' parameter_estimates <- estimates(penalized_fit, lambda = "EBIC", hybrid = TRUE)
 #'
+#' true_fixed_effects
 #' parameter_estimates$hybrid # Compare with true_fixed_effects
 #' parameter_estimates$random_effects_covariance
 #'
@@ -297,6 +299,7 @@
 #'
 #' parameter_estimates <- estimates(penalized_fit, lambda = "BIC", hybrid = TRUE)
 #'
+#' true_fixed_effects
 #' parameter_estimates$hybrid # Compare with true_fixed_effects
 #' parameter_estimates$random_effects_covariance
 #'
@@ -380,6 +383,7 @@
 #'
 #' parameter_estimates <- estimates(penalized_fit, lambda = "BIC", hybrid = TRUE)
 #'
+#' true_fixed_effects
 #' parameter_estimates$hybrid # Compare with true_fixed_effects
 #' parameter_estimates$random_effects_covariance
 #' }

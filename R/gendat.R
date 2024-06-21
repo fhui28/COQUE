@@ -20,8 +20,8 @@
 #' @param attempts The number of attempts used to try and re-simulate responses subject to \code{max_count}.
 #'
 #' @return A list with the following elements:
-#' \item{y:}{The simulated data frame of multivariate longitudinal responses, where the number of columns equal to the number of responses plus one. The last column is just equal to \code{data$id}.}
-#' \item{random_effects:}{A list of simulated random effects with length equal to the number of clusters. Each element in the list is a matrix with the number of rows equal to the number of responses and the number of columns equal to number of columns of the model matrix implied by \code{formula_Z}.}
+#' \item{y: }{The simulated data frame of multivariate longitudinal responses, where the number of columns equal to the number of responses plus one. The last column is just equal to \code{data$id}.}
+#' \item{random_effects: }{A list of simulated random effects with length equal to the number of clusters. Each element in the list is a matrix with the number of rows equal to the number of responses and the number of columns equal to number of columns of the model matrix implied by \code{formula_Z}.}
 #'
 #'
 #' @details # Warning

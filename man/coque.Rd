@@ -29,10 +29,10 @@ coque(
 
 \item{control}{A list containing the following elements:
 \itemize{
-\item{maxit}{the maximum number of iterations in the algorithm.}
-\item{eps}{the convergence criterion; the norm of the difference between estimates from successive iterations must be smaller than this value.}
-\item{round_eps}{a tolerance to round values to zero; this is technically not needed as COQUE and the broken adaptive ridge penalty will produce exactly zero estimates up to machine error, but is included anyway.}
-\item{fallback_to_bread}{whether to use replace the sandwich information matrix with the observed information (i.e., the bread) matrix if instabilities are detected in the former.}
+\item{maxit: }{the maximum number of iterations in the algorithm.}
+\item{eps: }{the convergence criterion; the norm of the difference between estimates from successive iterations must be smaller than this value.}
+\item{round_eps: }{a tolerance to round values to zero; this is technically not needed as COQUE and the broken adaptive ridge penalty will produce exactly zero estimates up to machine error, but is included anyway.}
+\item{fallback_to_bread: }{whether to use replace the sandwich information matrix with the observed information (i.e., the bread) matrix if instabilities are detected in the former.}
 }}
 }
 \value{
@@ -54,7 +54,7 @@ Extended Bayesian information criterion (EBIC2) with model complexity penalty of
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-The COQUE objective function being optimized is \code{-0.5 * t(psi - psihat) \%^\% G \%*\% (psi - psihat) - lambda * penalty}, where \code{psihat} are the composite likelihood estimates produced from the stacked univariate GLMM (see the \code{\link[=stackedGLMMs]{stackedGLMMs()}} function), \code{G} is the sandwich or Godambe information matrix, and \code{penalty} is are a set of broken adaptive ridge (fusion) penalties to achieve simultaneous variable selection and coefficient clustering on the fixed effect coefficients. Construction of the regularization path for COQUE is done via parallel computing.
+The COQUE objective function being optimized is \code{-0.5 * t(psi - psihat) \%^\% G \%*\% (psi - psihat) - lambda * penalty}, where \code{psihat} are the composite likelihood estimates produced from the stacked univariate GLMM (see the \code{\link[=stackedGLMMs]{stackedGLMMs()}} function), \code{G} is the sandwich or Godambe information matrix, and \code{penalty} is a set of broken adaptive ridge (fusion) penalties to achieve simultaneous variable selection and coefficient clustering on the fixed effect coefficients. Construction of the regularization path for COQUE is done via parallel computing.
 
 \strong{No penalization of the random effects is performed.}
 }
