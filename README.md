@@ -8,7 +8,7 @@
 
 <!-- badges: end -->
 
-`COQUE` (Composite Quadratic Estimator) is an R package associated with the manuscript "Simultaneous coefficient clustering and sparsity for multivariate mixed models" by [Hui](https://francishui.netlify.app/), [Dang](https://sites.google.com/view/khuedungdang/home?authuser=0), and [Maestrini](https://sites.google.com/view/lucamaestrini), which is currently in review.
+`COQUE` (Composite Quadratic Estimator) is an R package associated with the manuscript "Simultaneous coefficient clustering and sparsity for multivariate mixed models" by [Hui](https://francishui.netlify.app/), [Dang](https://sites.google.com/view/khuedungdang/home?authuser=0), and [Maestrini](https://sites.google.com/view/lucamaestrini), which is available at the [Journal of Computational and Graphical Statistics](https://doi.org/10.1080/10618600.2024.2402904).
 
 # Installation
 
